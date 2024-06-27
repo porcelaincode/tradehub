@@ -108,4 +108,4 @@ Response:
 
 <input type="checkbox" disabled /> <b>Optimize database queries</b> and WebSocket handling for better performance under load.
 
-<input type="checkbox" disabled /> Write the entire thing in Go lang
+<input type="checkbox" disabled checked/> Write the entire thing in Go lang

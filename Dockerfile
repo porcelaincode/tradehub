@@ -1,13 +1,19 @@
-FROM python:3.9-slim
+FROM golang:1.19-alpine
+
+# Install GCC and build dependencies
+RUN apk add --no-cache gcc musl-dev
 
 WORKDIR /app
 
-COPY . /app
+COPY go.mod ./
+COPY go.sum ./
+RUN go mod download
 
-RUN pip install --no-cache-dir -r requirements.txt
+COPY . ./
+
+RUN go build -o /tradehub ./cmd/server
 
 EXPOSE 8000
 
-ENV NAME World
+CMD ["/tradehub"]
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

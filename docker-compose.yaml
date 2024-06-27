@@ -1,13 +1,13 @@
 version: '3.8'
 
 services:
-  mock-broker-server:
-    build: .
-    container_name: mock-broker-server
+  trading_go:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: trading_go
     ports:
-      - '8000:8000'
+      - '8090:8090'
     volumes:
       - .:/app
-    environment:
-      - DATABASE_URL=sqlite:///./test.db
-    command: ['uvicorn', 'main:app', '--host', '0.0.0.0', '--port', '8000']
+    command: /tradehub
